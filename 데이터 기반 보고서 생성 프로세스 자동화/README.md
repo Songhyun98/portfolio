@@ -53,4 +53,5 @@
 - Matplotlib  
 
 ### Reporting & Automation
-- Jinja2  
+- Jinja2
+- HTML / CSS
