@@ -36,6 +36,21 @@
 ---
 
 ## 기술 스택
-- Python, SQL  
-- 데이터 분석 및 시각화: Pandas, Matplotlib 
-- 자동화 스크립트 기반 보고서 생성
+
+### Programming
+- Python  
+
+### Database & Query
+- PostgreSQL  
+- SQL  
+- SQLAlchemy  
+
+### Data Processing
+- Pandas  
+- NumPy  
+
+### Visualization
+- Matplotlib  
+
+### Reporting & Automation
+- Jinja2  
