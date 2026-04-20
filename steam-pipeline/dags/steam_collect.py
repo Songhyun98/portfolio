@@ -1,3 +1,4 @@
+import os
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
@@ -21,7 +22,7 @@ def collect_steam_data():
         host="172.20.240.1",
         database="steam_pipeline",
         user="postgres",
-        password="4601"
+        password=os.getenv("DB_PASSWORD")
     )
     cursor = conn.cursor()
     today = date.today()

@@ -140,7 +140,6 @@ pip install requests python-dotenv psycopg2-binary
 ### 환경변수 설정
 `.env` 파일 생성 후 아래 내용 입력
 ```
-STEAM_API_KEY=발급받은_스팀_API_키
 DB_PASSWORD=PostgreSQL_비밀번호
 ```
 
