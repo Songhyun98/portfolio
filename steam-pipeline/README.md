@@ -51,7 +51,7 @@ Steam API → Python ETL → Airflow (매일 자동 실행) → PostgreSQL → S
 | 오픈월드 | GTA V |
 | 서바이벌 | Palworld |
 | MMORPG | Lost Ark |
-| 넥슨 | The First Descendant |
+| TPS | The First Descendant |
 | 인디 | Stardew Valley |
 
 ---
