@@ -48,4 +48,3 @@
 | 컨테이너 | Docker, Docker Compose |
 | 데이터 처리 | Pandas, NumPy |
 | 시각화 | Matplotlib |
-| 자격증 | SQL 개발자 (한국데이터산업진흥원) |
