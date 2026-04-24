@@ -48,3 +48,4 @@
 | 컨테이너 | Docker, Docker Compose |
 | 데이터 처리 | Pandas, NumPy |
 | 시각화 | Matplotlib |
+| 클라우드 | AWS S3 |
