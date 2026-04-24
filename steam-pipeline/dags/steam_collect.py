@@ -1,4 +1,6 @@
 import os
+import json
+import boto3
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
@@ -18,6 +20,36 @@ GAMES = {
 }
 
 def collect_steam_data():
+    today = date.today()
+    raw_data = []
+
+    # Steam API 수집
+    for appid, name in GAMES.items():
+        url = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/"
+        response = requests.get(url, params={"appid": appid})
+        ccu = response.json()['response'].get('player_count', 0)
+        raw_data.append({
+            "appid": str(appid),
+            "name": name,
+            "ccu": ccu,
+            "collected_at": str(today)
+        })
+
+    # S3에 원본 JSON 저장
+    s3 = boto3.client(
+        's3',
+        aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+        aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+        region_name="ap-northeast-2"
+    )
+    s3.put_object(
+        Bucket=os.getenv("AWS_BUCKET_NAME"),
+        Key=f"raw/{today}/ccu_data.json",
+        Body=json.dumps(raw_data, ensure_ascii=False)
+    )
+    print(f"✅ S3 저장 완료: raw/{today}/ccu_data.json")
+
+    # PostgreSQL 적재
     conn = psycopg2.connect(
         host="172.20.240.1",
         database="steam_pipeline",
@@ -25,23 +57,18 @@ def collect_steam_data():
         password=os.getenv("DB_PASSWORD")
     )
     cursor = conn.cursor()
-    today = date.today()
 
-    for appid, name in GAMES.items():
-        url = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/"
-        response = requests.get(url, params={"appid": appid})
-        ccu = response.json()['response'].get('player_count', 0)
-
+    for item in raw_data:
         cursor.execute("""
             INSERT INTO steam_games (collected_at, appid, name, ccu)
             VALUES (%s, %s, %s, %s)
             ON CONFLICT (collected_at, appid) DO NOTHING
-        """, (today, str(appid), name, ccu))
+        """, (today, item["appid"], item["name"], item["ccu"]))
 
     conn.commit()
     cursor.close()
     conn.close()
-    print("✅ 수집 완료!")
+    print("✅ PostgreSQL 적재 완료!")
 
 default_args = {
     'owner': 'songhyun',

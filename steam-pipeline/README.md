@@ -14,7 +14,7 @@ Steam 플랫폼의 장르별 대표 게임 8개를 선정하여 매일 동시접
 ## 아키텍처
 
 ```
-Steam API → Python ETL → Airflow (매일 자동 실행) → PostgreSQL → SQL 분석
+Steam API → Python ETL → S3 (원본 백업) → Airflow (매일 자동 실행) → PostgreSQL → SQL 분석
 ```
 
 ```
@@ -38,6 +38,7 @@ Steam API → Python ETL → Airflow (매일 자동 실행) → PostgreSQL → S
 | 컨테이너 | Docker, Docker Compose |
 | 데이터 소스 | Steam Web API |
 | 버전 관리 | Git |
+| 클라우드 | AWS S3 |
 
 ---
 
@@ -141,6 +142,9 @@ pip install requests python-dotenv psycopg2-binary
 `.env` 파일 생성 후 아래 내용 입력
 ```
 DB_PASSWORD=PostgreSQL_비밀번호
+AWS_ACCESS_KEY_ID=액세스_키
+AWS_SECRET_ACCESS_KEY=비밀_액세스_키
+AWS_BUCKET_NAME=버킷_이름
 ```
 
 ### Docker 실행
