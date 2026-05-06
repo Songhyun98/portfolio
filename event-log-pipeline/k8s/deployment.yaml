@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: generator-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: generator
+  template:
+    metadata:
+      labels:
+        app: generator
+    spec:
+      containers:
+        - name: generator
+          image: liveclass-data-pipeline-generator:latest
+          envFrom:
+            - configMapRef:
+                name: generator-config
+          env:
+            - name: DB_PASSWORD
+              value: "postgres"

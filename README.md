@@ -15,6 +15,15 @@
 - SQL 윈도우 함수(LAG)로 일일 변화율 계산 및 +112% 급등 이상 징후 포착
 - `Python` `PostgreSQL` `Apache Airflow` `Docker`
 
+### [이벤트 로그 파이프라인](./event-log-pipeline)
+> State Machine 기반 유저 행동 시뮬레이션 및 데이터 파이프라인 구축
+
+- 온라인 강의 플랫폼의 유저 행동을 State Machine으로 모델링해 현실적인 이벤트 데이터 생성
+- Docker Compose로 PostgreSQL + 이벤트 생성기를 단일 명령으로 실행 가능한 환경 구성
+- SQL 집계 쿼리 5개 작성 및 matplotlib으로 시각화 차트 5개 생성
+- Kubernetes Deployment/ConfigMap manifest 작성 및 AWS 아키텍처 설계
+- `Python` `PostgreSQL` `Docker` `Kubernetes` `AWS`
+
 ### [데이터 기반 보고서 생성 자동화](./data_driven_report_generation_automation)
 > Python · SQL · Jinja2 기반 광고 성과 보고서 자동화 파이프라인 구축
 
@@ -45,7 +54,7 @@
 | 언어 | Python, SQL |
 | 데이터베이스 | PostgreSQL |
 | 워크플로우 | Apache Airflow |
-| 컨테이너 | Docker, Docker Compose |
+| 컨테이너 | Docker, Docker Compose, Kubernetes |
 | 데이터 처리 | Pandas, NumPy |
 | 시각화 | Matplotlib |
 | 클라우드 | AWS S3 |
