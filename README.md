@@ -7,7 +7,7 @@
 
 ## 데이터 엔지니어링
 
-### [AkiiiMonitor — 브랜드 헬스 모니터링 파이프라인](./AkiiiMonitor) 🔗 [Live Dashboard](https://akiiimonitor-jkb3nnfumu75enda2zjdmc.streamlit.app/)
+### [AkiiiMonitor — 브랜드 헬스 모니터링 파이프라인](./AkiiiMonitor) 🔗 [Live Dashboard](https://akiiimonitor-drzwpg7oyhfdcsnrcmfujq.streamlit.app/)
 > 네이버 Open API 기반 브랜드 검색·언급·쇼핑 트렌드 수집 및 자동 적재 파이프라인, 분석가와 협업해 Streamlit 대시보드까지 배포
 
 - 네이버 DataLab·검색·쇼핑인사이트 3개 API를 활용해 axis(동급/대중/시장)별, 세그먼트(성별·연령)별로 데이터 수집 구조 설계

@@ -1,6 +1,6 @@
 # AkiiiMonitor — 아키클래식 브랜드 헬스 모니터링
 
-🔗 **[Live Dashboard](https://akiiimonitor-jkb3nnfumu75enda2zjdmc.streamlit.app/)**
+🔗 **[Live Dashboard](https://akiiimonitor-drzwpg7oyhfdcsnrcmfujq.streamlit.app/)**
 
 > 공개 데이터(검색량·소셜 언급량·쇼핑 클릭)로 아키클래식의 컴포트화 시장 건강도를 자동 진단하는 데이터 파이프라인
 
