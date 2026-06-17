@@ -1,0 +1,6 @@
+# .streamlit/config.toml
+[theme]
+primaryColor = "#31542B"          # 라디오 버튼, 링크, 강조선 등의 핵심 시그니처 컬러
+backgroundColor = "#FFFFFF"      # 깨끗한 화이트 바탕
+secondaryBackgroundColor = "#F4F6F3" # 사이드바나 박스 영역의 부드러운 그린-그레이 톤
+textColor = "#1E2A1C"            # 가독성 높은 차분한 검은색 계열

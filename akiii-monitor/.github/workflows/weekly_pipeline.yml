@@ -1,0 +1,39 @@
+name: AkiiiMonitor 주간 파이프라인
+
+on:
+  schedule:
+    #- cron: "59 14 * * 0"   # 매주 일요일 23:59 KST
+    #- cron: "0 1 * * 4"   # 매주 목요일 오전 10시 (KST = UTC+9)
+  workflow_dispatch:        # 수동 실행 버튼도 활성화
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 의존성 설치
+        run: pip install -r requirements.txt
+
+      - name: 수집 실행 (storage.py)
+        env:
+          NAVER_CLIENT_ID:     ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+          SUPABASE_URL:        ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY:        ${{ secrets.SUPABASE_KEY }}
+        run: python db/storage.py
+
+      - name: 적재 실행 (upload.py)
+        env:
+          NAVER_CLIENT_ID:     ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+          SUPABASE_URL:        ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY:        ${{ secrets.SUPABASE_KEY }}
+        run: python db/upload.py

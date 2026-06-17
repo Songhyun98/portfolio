@@ -1,0 +1,10 @@
+requests
+pyarrow
+python-dotenv
+pytrends
+streamlit
+pandas>=2.2
+numpy
+plotly
+supabase
+anthropic

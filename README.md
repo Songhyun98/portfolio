@@ -7,6 +7,16 @@
 
 ## 데이터 엔지니어링
 
+### [AkiiiMonitor — 브랜드 헬스 모니터링 파이프라인](./AkiiiMonitor) 🔗 [Live Dashboard](https://akiiimonitor-jkb3nnfumu75enda2zjdmc.streamlit.app/)
+> 네이버 Open API 기반 브랜드 검색·언급·쇼핑 트렌드 수집 및 자동 적재 파이프라인, 분석가와 협업해 Streamlit 대시보드까지 배포
+
+- 네이버 DataLab·검색·쇼핑인사이트 3개 API를 활용해 axis(동급/대중/시장)별, 세그먼트(성별·연령)별로 데이터 수집 구조 설계
+- 페이지네이션으로 키워드당 최대 1000건 언급 문서 수집, 공통 retry/timeout 모듈로 4개 수집기 안정성 통일
+- Supabase PostgreSQL에 upsert 전략 적용해 중복 없이 주간 데이터 갱신, 카디널리티 기반으로 인덱스 설계
+- GitHub Actions로 매주 자동 수집·적재 파이프라인 구축, 1000행 응답 제한을 페이지네이션으로 우회하는 분석가용 조회 모듈 제공
+- LLM 인사이트 생성에 SHA256 해시 기반 캐싱 적용해 동일 데이터 재호출 방지, 강제 재생성 옵션으로 유연성 확보
+- `Python` `PostgreSQL(Supabase)` `GitHub Actions` `Streamlit` `Pandas`
+
 ### [Steam 동시접속자 트렌드 파이프라인](./steam-pipeline)
 > Docker · Airflow 기반 Steam 게임 동시접속자 자동 수집 및 이상 징후 탐지 파이프라인
 
@@ -52,9 +62,9 @@
 | 분류 | 기술 |
 |------|------|
 | 언어 | Python, SQL |
-| 데이터베이스 | PostgreSQL |
-| 워크플로우 | Apache Airflow |
-| 컨테이너 | Docker, Docker Compose, Kubernetes |
+| 데이터베이스 | PostgreSQL, Supabase |
+| 워크플로우 | Apache Airflow, GitHub Actions |
+| 컨테이너 | Docker, Docker Compose |
 | 데이터 처리 | Pandas, NumPy |
-| 시각화 | Matplotlib |
+| 시각화 | Matplotlib, Streamlit |
 | 클라우드 | AWS S3 |
